@@ -1,34 +1,35 @@
 {% extends "layout.html" %}
+{% block title %}
+ Another Stories – Sign In
+{% endblock %}
 {% block content %}
 	<form action="" method="POST" name="login" class="login-form">
-	<div class="row form-col">
-	  <div class="col-md-8">
-	    {{ form.hidden_tag() }}
-	      {{ form.username(size=80, class='form-control', placeholder=form.username.label.text) }}
-	  </div>
-	  <div class="col-md-4">
-	    {% if form.username.errors %}
-	          <h5 class="text-danger">{% for error in form.username.errors %} {{ error }} 
+	<div class="row half">
+		<div class="6u">
+     	  {{ form.hidden_tag() }}
+	      {{ form.username(class='text', placeholder=form.username.label.text) }}
+	      {% if form.username.errors %}
+	          <h5>{% for error in form.username.errors %} {{ error }} 
 	            {% endfor %}
 	          </h5>
 	      {% endif %} 
-	  </div>
-	</div>
-	<br>
-	<div class="row form-col">
-	  <div class="col-md-8">
-	    {{ form.hidden_tag() }}
-	      {{ form.password(size=80, class='form-control', placeholder=form.password.label.text) }}
-	      <br>
-	      <p><input type="submit" class="btn btn-success pull-right login-btn" value="Попробовать войти"></p>
-	  </div>
-	  <div class="col-md-4">
-	       {% if form.password.errors %}
-	          <h5 class="text-danger">{% for error in form.password.errors %} {{ error }} 
+      	<br>
+	      {{ form.password(class='text', placeholder=form.password.label.text) }}
+	      {% if form.password.errors %}
+	          <h5>{% for error in form.password.errors %} {{ error }} 
 	            {% endfor %}
 	          </h5>
-	      {% endif %}
-	  </div>
-	</div>
+	      {% endif %} 
+	    <br>
+	    <!-- <a href="#"><span class="glyphicon button" style="font-family: Marmelad">Войти</span></a> -->
+	    <input type="submit" class="glyphicon button" style="font-family: Marmelad"/>
+		</div>
+		<div class="6u">
+		      <p>Возможно, вам не нужно быть здесь?</p>
+		      <p>Форма входа только для писателя.</p>
+		      <br>
+		      <a href="#"><span class="glyphicon button btn-circle" style="font-family: Marmelad;">Ой, извините! Читать дальше</span></a>
+		 </div>
+    </div>
 	</form>
 {% endblock %}

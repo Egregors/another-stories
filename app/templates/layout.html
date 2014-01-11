@@ -1,20 +1,72 @@
-{% block title %}
-	<title>Title</title>
-{% endblock %}
-{% block content %}
-{% endblock %}
-{% block flashes %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/skel-noscript.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style-n1.css') }}">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+    <link rel="shortcut icon" href="/bootstrap/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/bootstrap/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png"> 
+  </head>
+  <body>
+    <div id="header-wrapper">
+						
+		<!-- Header -->
+		<div id="header" class="container">
+						
+			<!-- Nav -->
+			<nav id="nav">
+				<div class="row">
+					<div class="11u" id="logoSt">
+						<a href="#">ДРУГИЕ СКАЗКИ</a>
+					</div>
+					{% block tree %}
+					<div align="right" class="1u login-write"><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-tree-deciduous"></span></a></div>
+					{% endblock %}
+				</div>
+			</nav>
+
+		</div>
+	</div>
+	{% block flashes %}
         
 	{% with flashes = get_flashed_messages(with_categories=true) %}
-	{% if flashes %}
-	  {% for category, message in flashes %}
-	    <div class="alert alert-info alert-dismissable {{ category }}">
-	      <button type="button" class="close flashes" data-dismiss="alert" aria-hidden="true">&times;</button>
-	      <strong>{{ message }}</strong> 
-	    </div>
-	  {% endfor %}
-	{% endif %}
-	{% endwith %}
+		{% if flashes %}
+		  {% for category, message in flashes %}
+		    <div class="alert alert-info alert-dismissable {{ category }}">
+		      <button type="button" class="close flashes" data-dismiss="alert" aria-hidden="true">&times;</button>
+		      <strong>{{ message }}</strong> 
+		    </div>
+		  {% endfor %}
+		{% endif %}
+		{% endwith %}
 
-{% endblock %}
+	{% endblock %}
+	<div id="footer-wrapper">
+		<div class="container">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>
+    {% block js %}
+      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dropotron.min.js') }}"></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/skel.min.js') }}"></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/skel-panels.min.js') }}"></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/init.js') }}"></script>
+    {% endblock %}
+  </body>
+</html>
+
 

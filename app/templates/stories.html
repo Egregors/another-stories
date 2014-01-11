@@ -2,6 +2,11 @@
 {% block title %}
 	<title>Истории</title>
 {% endblock %}
+{% if g.user.user_id %}
+	{% block tree %}
+		<div align="right" class="1u login-write"><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></div>
+	{% endblock %}
+{% endif%}
 {% block content %}
 	{% if form %}
 		<h1>Добавление историй</h1>
@@ -15,15 +20,21 @@
 	{% endif %}
 	{% if stories %}
 		{% for story in stories %}
-			<div>
-				<h2>{{ story.title }}</h2>
-				<br>
-				{{ story.text }}
-				<br>
-				{{ story.like|string }} lickes
-				<br>
-				<br>
+
+		<div class="row" id="main">
+			<div class="12u">
+						
+			<!-- Content -->
+				<article id="content">
+					<header>
+						<span align="center" id="storyName"><a href="">{{ story.title }}</a></span>
+					</header>
+					{{ story.text }}
+					<div align="right"><strong>{{ story.like|string }}</strong><a href="#"><span class="glyphicon glyphicon-heart-empty"></span></a></div>
+				</article>
+
 			</div>
+		</div>
 		{% endfor %}
 	{% endif %}
 {% endblock %}
