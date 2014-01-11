@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}
+	<title>Истории</title>
+{% endblock %}
+{% block content %}
+	{% if form %}
+		<h1>Добавление историй</h1>
+		<form action="" method="POST" name="add_story" class="add_story-form">
+		{{ form.hidden_tag() }}
+		{{ form.title(size=80, placeholder=form.title.label.text) }}
+		<br>
+		{{ form.text(placeholder=form.text.label.text)}}
+		<p><input type="submit" class="btn btn-success pull-right login-btn" value="Рассказать всем!"></p>
+		</form>
+	{% endif %}
+	{% if stories %}
+		{% for story in stories %}
+			<div>
+				<h2>{{ story.title }}</h2>
+				<br>
+				{{ story.text }}
+				<br>
+				{{ story.like|string }} lickes
+				<br>
+				<br>
+			</div>
+		{% endfor %}
+	{% endif %}
+{% endblock %}

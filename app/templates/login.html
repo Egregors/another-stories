@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+	<form action="" method="POST" name="login" class="login-form">
+	<div class="row form-col">
+	  <div class="col-md-8">
+	    {{ form.hidden_tag() }}
+	      {{ form.username(size=80, class='form-control', placeholder=form.username.label.text) }}
+	  </div>
+	  <div class="col-md-4">
+	    {% if form.username.errors %}
+	          <h5 class="text-danger">{% for error in form.username.errors %} {{ error }} 
+	            {% endfor %}
+	          </h5>
+	      {% endif %} 
+	  </div>
+	</div>
+	<br>
+	<div class="row form-col">
+	  <div class="col-md-8">
+	    {{ form.hidden_tag() }}
+	      {{ form.password(size=80, class='form-control', placeholder=form.password.label.text) }}
+	      <br>
+	      <p><input type="submit" class="btn btn-success pull-right login-btn" value="Попробовать войти"></p>
+	  </div>
+	  <div class="col-md-4">
+	       {% if form.password.errors %}
+	          <h5 class="text-danger">{% for error in form.password.errors %} {{ error }} 
+	            {% endfor %}
+	          </h5>
+	      {% endif %}
+	  </div>
+	</div>
+	</form>
+{% endblock %}

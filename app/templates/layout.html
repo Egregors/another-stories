@@ -1,0 +1,20 @@
+{% block title %}
+	<title>Title</title>
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block flashes %}
+        
+	{% with flashes = get_flashed_messages(with_categories=true) %}
+	{% if flashes %}
+	  {% for category, message in flashes %}
+	    <div class="alert alert-info alert-dismissable {{ category }}">
+	      <button type="button" class="close flashes" data-dismiss="alert" aria-hidden="true">&times;</button>
+	      <strong>{{ message }}</strong> 
+	    </div>
+	  {% endfor %}
+	{% endif %}
+	{% endwith %}
+
+{% endblock %}
+
