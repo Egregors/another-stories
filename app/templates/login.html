@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block title %}
- Another Stories – Sign In
+ Sign In
 {% endblock %}
 {% block content %}
 	<form action="" method="POST" name="login" class="login-form">
@@ -13,7 +13,12 @@
 	            {% endfor %}
 	          </h5>
 	      {% endif %} 
-      	<br>
+	  	</div>
+	  	<div class="6u">
+	  	</div>
+	  </div>
+	  <div class="row half">
+	  	<div class="6u">
 	      {{ form.password(class='text', placeholder=form.password.label.text) }}
 	      {% if form.password.errors %}
 	          <h5>{% for error in form.password.errors %} {{ error }} 
@@ -22,13 +27,13 @@
 	      {% endif %} 
 	    <br>
 	    <!-- <a href="#"><span class="glyphicon button" style="font-family: Marmelad">Войти</span></a> -->
-	    <input type="submit" class="glyphicon button" style="font-family: Marmelad"/>
+	    <input type="submit" class="button button-str" style="font-family: Marmelad" value="Войти"/>
 		</div>
-		<div class="6u">
-		      <p>Возможно, вам не нужно быть здесь?</p>
-		      <p>Форма входа только для писателя.</p>
-		      <br>
-		      <a href="#"><span class="glyphicon button btn-circle" style="font-family: Marmelad;">Ой, извините! Читать дальше</span></a>
+		<div class="6u" class="read-question">
+		    <p>Возможно, вам не нужно быть здесь?</p>
+		    <p>Форма входа только для писателя.</p>
+		    <br>
+		    <a href="#"><span class="glyphicon button button-str" style="font-family: Marmelad;">Ой, извините! Читать дальше</span></a>
 		 </div>
     </div>
 	</form>

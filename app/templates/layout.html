@@ -20,11 +20,9 @@
     <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png"> 
   </head>
   <body>
-    <div id="header-wrapper">
-						
+    <div id="header-wrapper">				
 		<!-- Header -->
-		<div id="header" class="container">
-						
+		<div id="header" class="container">	
 			<!-- Nav -->
 			<nav id="nav">
 				<div class="row">
@@ -32,33 +30,37 @@
 						<a href="#">ДРУГИЕ СКАЗКИ</a>
 					</div>
 					{% block tree %}
-					<div align="right" class="1u login-write"><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-tree-deciduous"></span></a></div>
+					<div align="right" class="1u login-write"><a href="{{ url_for('login') }}" style="text-indent: 0px" id="login-icon"><span class="glyphicon glyphicon-tree-deciduous"></span></a></div>
 					{% endblock %}
 				</div>
 			</nav>
 
 		</div>
 	</div>
-	{% block flashes %}
-        
-	{% with flashes = get_flashed_messages(with_categories=true) %}
-		{% if flashes %}
-		  {% for category, message in flashes %}
-		    <div class="alert alert-info alert-dismissable {{ category }}">
-		      <button type="button" class="close flashes" data-dismiss="alert" aria-hidden="true">&times;</button>
-		      <strong>{{ message }}</strong> 
-		    </div>
-		  {% endfor %}
-		{% endif %}
-		{% endwith %}
+	<div class="container">
+		{% block flashes %}
+			{% with flashes = get_flashed_messages(with_categories=true) %}
+				{% if flashes %}
+					{% for category, message in flashes %}
+					    <div class="flashes {{ category }}">
+					    	<p flashes-body>{{ message }}<a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a></p>
+						</div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+		{% endblock %}
 
-	{% endblock %}
-	<div id="footer-wrapper">
-		<div class="container">
-			{% block content %}
-			{% endblock %}
-		</div>
+		{% block content %}
+		{% endblock %}
 	</div>
+	<div id="copyright" class="container">
+		<ul class="menu">	
+			<li  id="llamaCopyright"><a href="#">&copy;Lama on the Boat</a></li>
+			<!-- <li>2014</li> -->
+			<!-- <li><a href="#">Donate!</span></a></li> -->
+		</ul>
+	</div>
+
     {% block js %}
       <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
       <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dropotron.min.js') }}"></script>
