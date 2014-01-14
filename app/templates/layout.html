@@ -27,7 +27,7 @@
 			<nav id="nav">
 				<div class="row">
 					<div class="11u" id="logoSt">
-						<a href="#">ДРУГИЕ СКАЗКИ</a>
+						<a href="{{ url_for('index') }}">ДРУГИЕ СКАЗКИ</a>
 					</div>
 					{% block tree %}
 					<div align="right" class="1u login-write"><a href="{{ url_for('login') }}" style="text-indent: 0px" id="login-icon"><span class="glyphicon glyphicon-tree-deciduous"></span></a></div>
@@ -67,6 +67,7 @@
       <script type="text/javascript" src="{{ url_for('static', filename='js/skel.min.js') }}"></script>
       <script type="text/javascript" src="{{ url_for('static', filename='js/skel-panels.min.js') }}"></script>
       <script type="text/javascript" src="{{ url_for('static', filename='js/init.js') }}"></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/notificationClose.js') }}"></script>
     {% endblock %}
   </body>
 </html>

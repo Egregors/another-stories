@@ -1,0 +1,14 @@
+{% extends "stories.html" %}
+{% block content %}
+	{% if form %}
+		<form action="" method="POST" name="add_story" class="add_story-form">
+		{{ form.hidden_tag() }}
+		<br>
+		{{ form.title(class='text-str', value=story.title) }}
+		<br>
+		{{ form.text(class='text-str', content=story.text) }}
+		<br>
+		<input type="submit" class="button button-str" value="Сохранить исправления">
+		</form>
+	{% endif %}
+{% endblock %}

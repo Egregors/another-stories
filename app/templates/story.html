@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "stories.html" %}
 {% block title %}
 	{{ story.title }}
 {% endblock %}
@@ -11,7 +11,9 @@
 					<span align="center" id="storyName">{{ story.title }}</span>
 				</header>
 				{{ story.text }}
-				<div align="right" class="icon-container"><strong class="str-icon">{{ story.like|string }}</strong><a href="#"><span class="glyphicon glyphicon-heart-empty str-icon"></span></a></div>
+				<div align="right" class="icon-container">
+					<strong class="str-icon" id="likes_for_{{ story.story_id }}">{{ story.like|string }}</strong><a href='#' id="{{ story.story_id }}" class="like-story"><span class="glyphicon glyphicon-heart-empty str-icon"></span></a>
+				</div>
 			</article>
 
 		</div>

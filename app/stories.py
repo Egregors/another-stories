@@ -69,7 +69,8 @@ def before_request():
 # application routes
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    stories = query_db("SELECT * FROM story WHERE 1 ORDER BY story_id DESC LIMIT 5")
+    stories = query_db(
+        "SELECT * FROM story WHERE 1 ORDER BY story_id DESC LIMIT 5")
     if g.user:
         # создаем форму для добавления новой истории
         add_story_form = AddStoryForm()
@@ -78,20 +79,24 @@ def index():
             db.execute("INSERT INTO story (title, text) VALUES (?, ?)",
                        [request.form['title'], request.form['text']])
             db.commit()
-            flash('ok')
+            flash(u'Ура! Новую историю увидят все.')
             return redirect(url_for('index'))
         return render_template('stories.html', form=add_story_form, stories=stories)
     else:
         return render_template('stories.html', stories=stories)
 
+
 @app.route('/story/get_more/<int:last_story_id>', methods=['POST'])
 def get_more_stories(last_story_id):
-    stories = query_db("SELECT * FROM story WHERE story_id<? ORDER BY story_id DESC LIMIT 5", [last_story_id])
+    stories = query_db(
+        "SELECT * FROM story WHERE story_id<? ORDER BY story_id DESC LIMIT 5", [last_story_id])
     return stories
+
 
 @app.route('/story/<int:story_id>')
 def show_story(story_id):
-    story = query_db("SELECT * FROM story WHERE story_id = ?", [story_id], True)
+    story = query_db("SELECT * FROM story WHERE story_id = ?",
+                     [story_id], True)
     return render_template('story.html', story=story)
 
 
@@ -99,8 +104,38 @@ def show_story(story_id):
 def like_story(story_id):
     try:
         db = get_db()
-        db.execute("UPDATE story SET like=like+1 WHERE story_id=?", [story_id])
-        db.commit
+        db.execute("UPDATE story SET like=like+1 WHERE story_id = ?",
+                   [story_id])
+        db.commit()
+        result_likes = query_db(
+            "SELECT like FROM story WHERE story_id = ?", [story_id], True)
+        return jsonify({'result': 'OK', 'likes': result_likes['like']})
+    except sqlite3.OperationalError:
+        return jsonify({'result': 'FAILED'})
+
+
+@app.route('/story/edit/<int:story_id>')
+def edit_story(story_id):
+    if g.user:
+        story = query_db("SELECT * FROM story WHERE story_id = ?", [story_id], True)
+        edit_story_form = AddStoryForm()
+        if request.method == 'POST' and edit_story_form.validate():
+            db = get_db()
+            db.execute("UPDATE story SET(title = ?, text = ?) WHERE story_id = ?", \
+                [request.form['title'], request.form['text'], story_id])
+            db.commit()
+            flash(u'История успешно изменина ')
+            return redirect(url_for('index'))
+        return render_template('edit_story.html', story=story, form=edit_story_form)
+    return redirect(url_for('index'))
+
+
+
+@app.route('/story/remove/<int:story_id>', methods=['POST'])
+def remove_story(story_id):
+    try:
+        db = get_db()
+        db.execute("DELETE FROM story WHERE story_id = ?", [story_id])
         return jsonify({'result': 'OK'})
     except sqlite3.OperationalError:
         return jsonify({'result': 'FAILED'})
@@ -125,7 +160,7 @@ def login():
 @app.route('/logout')
 def logout():
     """Logs the user out"""
-    flash('You were logged out')
+    flash(u'Всего хорошего! Возвращайся скорее ')
     session.pop('user_id', None)
     return redirect(url_for('index'))
 
