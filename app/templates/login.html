@@ -9,9 +9,9 @@
      	  {{ form.hidden_tag() }}
 	      {{ form.username(class='text', placeholder=form.username.label.text) }}
 	      {% if form.username.errors %}
-	          <h5>{% for error in form.username.errors %} {{ error }} 
+	          <p class="login-error">{% for error in form.username.errors %} {{ error }} 
 	            {% endfor %}
-	          </h5>
+	          </p>
 	      {% endif %} 
 	  	</div>
 	  	<div class="6u">
@@ -21,19 +21,19 @@
 	  	<div class="6u">
 	      {{ form.password(class='text', placeholder=form.password.label.text) }}
 	      {% if form.password.errors %}
-	          <h5>{% for error in form.password.errors %} {{ error }} 
+	          <p class="login-error">{% for error in form.password.errors %} {{ error }} 
 	            {% endfor %}
-	          </h5>
+	          </p>
 	      {% endif %} 
 	    <br>
 	    <!-- <a href="#"><span class="glyphicon button" style="font-family: Marmelad">Войти</span></a> -->
-	    <input type="submit" class="button button-str" style="font-family: Marmelad" value="Войти"/>
+	    <input type="submit" class="button button-str" value="Войти"/>
 		</div>
-		<div class="6u" class="read-question">
+		<div class="6u" class="read-question" align="center">
 		    <p>Возможно, вам не нужно быть здесь?</p>
 		    <p>Форма входа только для писателя.</p>
 		    <br>
-		    <a href="#"><span class="glyphicon button button-str" style="font-family: Marmelad;">Ой, извините! Читать дальше</span></a>
+		   	<input type="button" class="button button-str" value="Читать дальше" id="readMore"/>
 		 </div>
     </div>
 	</form>

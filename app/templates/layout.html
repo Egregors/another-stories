@@ -11,6 +11,7 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/skel-noscript.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style-n1.css') }}">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
@@ -22,7 +23,7 @@
   <body>
     <div id="header-wrapper">				
 		<!-- Header -->
-		<div id="header" class="container">	
+		<div id="header">	
 			<!-- Nav -->
 			<nav id="nav">
 				<div class="row">
@@ -53,7 +54,7 @@
 		{% block content %}
 		{% endblock %}
 	</div>
-	<div id="copyright" class="container">
+	<div id="copyright">
 		<ul class="menu">	
 			<li  id="llamaCopyright"><a href="#">&copy;Lama on the Boat</a></li>
 			<!-- <li>2014</li> -->
