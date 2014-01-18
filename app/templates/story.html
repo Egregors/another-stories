@@ -10,7 +10,7 @@
 				<header>
 					<span align="center" id="storyName"><a href="#">{{ story.title }}</a></span>
 				</header>
-				{{ story.text }}
+				{{ story.text|safe }}
 				<div align="right" class="icon-container">
 					<strong class="str-icon" id="likes_for_{{ story.story_id }}">{{ story.like|string }}</strong><a href='#' id="{{ story.story_id }}" class="like-story"><span class="glyphicon glyphicon-heart-empty str-icon"></span></a>
 				</div>
