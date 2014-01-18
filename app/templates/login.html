@@ -5,7 +5,7 @@
 {% block content %}
 	<form action="" method="POST" name="login" class="login-form">
 	<div class="row half">
-		<div class="6u">
+		<div class="12u login-inp">
      	  {{ form.hidden_tag() }}
 	      {{ form.username(class='text', placeholder=form.username.label.text) }}
 	      {% if form.username.errors %}
@@ -14,11 +14,9 @@
 	          </p>
 	      {% endif %} 
 	  	</div>
-	  	<div class="6u">
-	  	</div>
 	  </div>
 	  <div class="row half">
-	  	<div class="6u">
+	  	<div class="12u login-inp">
 	      {{ form.password(class='text', placeholder=form.password.label.text) }}
 	      {% if form.password.errors %}
 	          <p class="login-error">{% for error in form.password.errors %} {{ error }} 
@@ -29,12 +27,7 @@
 	    <!-- <a href="#"><span class="glyphicon button" style="font-family: Marmelad">Войти</span></a> -->
 	    <input type="submit" class="button button-str" value="Войти"/>
 		</div>
-		<div class="6u" class="read-question" align="center">
-		    <p>Возможно, вам не нужно быть здесь?</p>
-		    <p>Форма входа только для писателя.</p>
-		    <br>
-		   	<input type="button" class="button button-str" value="Читать дальше" id="readMore"/>
-		 </div>
+		
     </div>
 	</form>
 {% endblock %}

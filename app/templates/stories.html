@@ -38,7 +38,7 @@
 					</div>
 						{% if form %}
 						<a href="{{ url_for('edit_story', story_id = story.story_id) }}" id="editStory"><span class="glyphicon glyphicon-pencil str-icon"></span></a>
-						<a href="#" id="removeStory"><span id="{{ story.story_id }}" class="glyphicon glyphicon-trash str-icon remove-story"></span></a>
+						<button id="removeStory" class="like-story"><span id="{{ story.story_id }}" class="glyphicon glyphicon-trash str-icon remove-story"></span></button>
 						{% endif %}
 				</article>
 			</div>
