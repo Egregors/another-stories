@@ -4,9 +4,9 @@
 		<form action="" method="POST" name="add_story" class="add_story-form">
 		{{ form.hidden_tag() }}
 		<br>
-		{{ form.title(class='text-str', value=story.title) }}
+		{{ form.title(class='text-str') }}
 		<br>
-		{{ form.text(class='text-str', content=story.text) }}
+		{{ form.text(class='text-str') }}
 		<br>
 		<input type="submit" class="button button-str" value="Сохранить исправления">
 		</form>

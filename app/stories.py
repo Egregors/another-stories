@@ -70,7 +70,7 @@ def before_request():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     stories = query_db(
-        "SELECT * FROM story WHERE 1 ORDER BY story_id DESC LIMIT 5")
+        "SELECT * FROM story WHERE 1 ORDER BY story_id DESC")
     if g.user:
         # создаем форму для добавления новой истории
         add_story_form = AddStoryForm()
@@ -114,15 +114,16 @@ def like_story(story_id):
         return jsonify({'result': 'FAILED'})
 
 
-@app.route('/story/edit/<int:story_id>')
+@app.route('/story/edit/<int:story_id>', methods=['GET', 'POST'])
 def edit_story(story_id):
     if g.user:
         story = query_db("SELECT * FROM story WHERE story_id = ?", [story_id], True)
-        edit_story_form = AddStoryForm()
+        edit_story_form = AddStoryForm(**story)
         if request.method == 'POST' and edit_story_form.validate():
             db = get_db()
-            db.execute("UPDATE story SET(title = ?, text = ?) WHERE story_id = ?", \
+            db.execute("UPDATE story SET title = ?, text = ?  WHERE story_id = ?", \
                 [request.form['title'], request.form['text'], story_id])
+            
             db.commit()
             flash(u'История успешно изменина ')
             return redirect(url_for('index'))
@@ -135,7 +136,9 @@ def edit_story(story_id):
 def remove_story(story_id):
     try:
         db = get_db()
+        print story_id
         db.execute("DELETE FROM story WHERE story_id = ?", [story_id])
+        db.commit()
         return jsonify({'result': 'OK'})
     except sqlite3.OperationalError:
         return jsonify({'result': 'FAILED'})
