@@ -765,6 +765,7 @@
 			src: url(font/FLOYDC.TTF); 
 			font-size: 3em;
 			text-decoration: none;
+			padding-left: 10%;
 		}
 
 	.login-write {
@@ -887,7 +888,7 @@
 	}
 
 	#logoSt a {
-		font-size: 2em;
+		font-size: 1.6em;
 	}
 
 	.login-form {
@@ -895,6 +896,10 @@
 			padding-left: 10%;
 			padding-right: 10%;
 		}
+
+	#storyName a {
+		font-size: 1em;
+	}
 
 
 }
