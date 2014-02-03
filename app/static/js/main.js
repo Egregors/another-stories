@@ -45,3 +45,16 @@ function remove_story () {
 		}
 	});
 }
+
+function set_story_filter (filter) {
+	$.ajax({
+		type: 'POST',
+		url: '/settings/story_filter/' + filter,
+		success: function (result) {
+			console.log('The story filter was changed to a : ' + filter);
+		},
+		error: function (result) {
+			console.log('Something gona wrong..');	
+		}
+	});
+}

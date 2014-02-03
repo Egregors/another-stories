@@ -3,9 +3,12 @@
     Another Stories
     ~~~~~~~~~~~~~~~
 
-    Simple web-application for cute short stories
+    Simple blog-like web-application for cute short stories.
+    Before run execute init_db.py to initialisation Data Base,
+    and set Master username and password.
 
     :copyright: (c) 2014 by Llama on the Boat (llamaontheboat.com)
+                         by Vadim Iskuchekov (vadim.deus@gmail.com)
     :license: Apache License 2.0
 """
 # from __future__ import unicode_literals
@@ -64,13 +67,28 @@ def before_request():
     if 'user_id' in session:
         g.user = query_db('select * from user where user_id = ?',
                           [session['user_id']], one=True)
+    if 'story_filter' not in session:
+        session['story_filter'] = 'new'
+
+# decorators
+# def login_required(f):
+#     @wraps(f)
+#     def decorated_function(*args, **kwargs):
+#         if g.user is None:
+#             redirect(url_for('index'))
+#         return f(*args, **kwargs)
+#     return decorated_function
 
 
 # application routes
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    stories = query_db(
-        "SELECT * FROM story WHERE 1 ORDER BY story_id DESC")
+    if session['story_filter'] == 'new':
+        stories = query_db(
+            "SELECT * FROM story WHERE 1 ORDER BY story_id DESC")
+    elif session['story_filter'] == 'like':
+        stories = query_db(
+            "SELECT * FROM story WHERE 1 ORDER BY like DESC")
     if g.user:
         # создаем форму для добавления новой истории
         add_story_form = AddStoryForm()
@@ -117,19 +135,19 @@ def like_story(story_id):
 @app.route('/story/edit/<int:story_id>', methods=['GET', 'POST'])
 def edit_story(story_id):
     if g.user:
-        story = query_db("SELECT * FROM story WHERE story_id = ?", [story_id], True)
+        story = query_db("SELECT * FROM story WHERE story_id = ?",
+                         [story_id], True)
         edit_story_form = AddStoryForm(**story)
         if request.method == 'POST' and edit_story_form.validate():
             db = get_db()
-            db.execute("UPDATE story SET title = ?, text = ?  WHERE story_id = ?", \
+            db.execute(
+                "UPDATE story SET title = ?, text = ?  WHERE story_id = ?",
                 [request.form['title'], request.form['text'], story_id])
-            
             db.commit()
             flash(u'История успешно изменина ')
             return redirect(url_for('index'))
         return render_template('edit_story.html', story=story, form=edit_story_form)
     return redirect(url_for('index'))
-
 
 
 @app.route('/story/remove/<int:story_id>', methods=['POST'])
@@ -166,6 +184,13 @@ def logout():
     flash(u'Всего хорошего! Возвращайся скорее ')
     session.pop('user_id', None)
     return redirect(url_for('index'))
+
+@app.route('/settings/story_filter/<string:story_filter>')
+def set_story_filter(story_filter):
+    if story_filter in ['new', 'like']:
+        session['story_filter'] = story_filter
+        return jsonify({'result': 'OK'})
+    return jsonify({'result': 'FAILED'})
 
 # run!
 if __name__ == '__main__':
