@@ -284,6 +284,33 @@
 		{
 		}
 
+		.dropdown {
+			padding: 0.45em 0 0.45em 0;
+		}
+
+		.dropdown:hover {
+			padding: 0.45em 0 0.45em 0;
+			background-color: #F3F3F3;
+			border-radius: 0.35em;
+		}
+
+		.dropdown a {
+			color: #918787;
+			font-size: 1.2em;
+			font-family: Marmelad; 
+    		src: url(font/Marmelad-Regular.ttf); 
+		}
+
+		.dropdown a:hover {
+			color: #918787;
+			text-decoration: none;
+		}
+
+		.s1 {
+			float: left;
+			margin-top: 16px;
+		}
+
 	/* Forms */
 
 		form
@@ -415,6 +442,12 @@
 			color: #F18888;
 			padding: 5px;
 		}
+
+		/*#login-icon {
+			position: absolute;
+			margin: 30px 0 0 -30%;
+
+		}*/
 			
 	/* Tables */
 	
@@ -767,22 +800,6 @@
 			text-decoration: none;
 			padding-left: 10%;
 		}
-
-	.login-write {
-		margin-left: -40px;
-		margin-top: 15px;
-		text-indent: 0px
-	}
-
-		.login-write a {
-			color: #fff;
-			position: absolute;
-		}
-
-		.login-write a:hover {
-			color: #f34848;
-		}
-
 
 /*********************************************************************************/
 /* Hero                                                                          */

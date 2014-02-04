@@ -15,7 +15,7 @@
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="shortcut icon" href="/bootstrap/img/favicon.ico">
     <link rel="apple-touch-icon" href="/bootstrap/img/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png"> 
@@ -27,14 +27,16 @@
 		<div id="header">	
 			<!-- Nav -->
 			<nav id="nav">
-				<div class="row">
-					<div class="11u" id="logoSt">
-						<a href="{{ url_for('index') }}">ДРУГИЕ СКАЗКИ</a>
-					</div>
-					{% block tree %}
-					<div align="right" class="1u login-write"><a href="{{ url_for('login') }}" id="login-icon"><span class="glyphicon glyphicon-tree-deciduous"></span></a></div>
-					{% endblock %}
-				</div>
+				<ul>
+					<li class="opener s1" style="-webkit-user-select: none; cursor: pointer; white-space: nowrap; opacity: 1;">
+						<a href="" class="glyphicon glyphicon-tree-deciduous" id="login-icon"></a>
+						<ul style="-webkit-user-select: none; position: absolute; z-index: 1000; left: 158px; top: 80px; opacity: 1; display: none;" class="dropotron level-0 center" >
+							<li style="white-space: nowrap;" class="dropdown"><a href="#" style="display: block;">Показать новые</a></li>
+							<li style="white-space: nowrap;" class="dropdown"><a href="#" style="display: block;">Показать лучшие</a></li>
+						</ul>
+					</li>
+					<li style="white-space: nowrap;" id="logoSt"><a href="{{ url_for('index') }}">ДРУГИЕ СКАЗКИ</a></li>
+				</ul>
 			</nav>
 
 		</div>
