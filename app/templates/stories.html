@@ -2,13 +2,11 @@
 {% block title %}
 	Другие сказки
 {% endblock %}
-<!-- {% block tree %}
+{% block logout %}
 	{% if g.user %}
 		<div align="right" class="1u login-write"><a href="{{ url_for('logout') }}" style="text-indent: 0px" id="login-icon"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></div>
-	{% else %}
-		{{ super() }}
 	{% endif %}
-{% endblock %} -->
+{% endblock %}
 {% block content %}
 	{% if form %}
 		<form action="" method="POST" name="add_story" class="add_story-form">

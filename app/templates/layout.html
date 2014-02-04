@@ -31,14 +31,14 @@
 					<li class="opener s1" style="-webkit-user-select: none; cursor: pointer; white-space: nowrap; opacity: 1;">
 						<a href="" class="glyphicon glyphicon-tree-deciduous" id="login-icon"></a>
 						<ul style="-webkit-user-select: none; position: absolute; z-index: 1000; left: 158px; top: 80px; opacity: 1; display: none;" class="dropotron level-0 center" >
-							<li style="white-space: nowrap;" class="dropdown"><a href="#" style="display: block;">Показать новые</a></li>
-							<li style="white-space: nowrap;" class="dropdown"><a href="#" style="display: block;">Показать лучшие</a></li>
+							<li style="white-space: nowrap;" class="dropdown"><a class="settings"id="new" href="#" style="display: block;">Показать новые</a></li>
+							<li style="white-space: nowrap;" class="dropdown"><a class="settings" id="like" href="#" style="display: block;">Показать лучшие</a></li>
 						</ul>
 					</li>
+					<!-- {% block logout %}{% endblock %} -->
 					<li style="white-space: nowrap;" id="logoSt"><a href="{{ url_for('index') }}">ДРУГИЕ СКАЗКИ</a></li>
 				</ul>
 			</nav>
-
 		</div>
 	</div>
 	<div class="container">

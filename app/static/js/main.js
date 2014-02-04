@@ -2,7 +2,9 @@ $(document).on('click', '.like-story', like_story);
 $(document).on('click', '.remove-story', remove_story);
 
 $(document).ready(function () {
-
+	$('.settings').bind('click', function() {
+		set_story_filter($(this).attr('id'));
+	});
 })
 
 function like_story () {
@@ -47,14 +49,16 @@ function remove_story () {
 }
 
 function set_story_filter (filter) {
+	console.log(filter);
 	$.ajax({
 		type: 'POST',
 		url: '/settings/story_filter/' + filter,
 		success: function (result) {
 			console.log('The story filter was changed to a : ' + filter);
+			location.reload();
 		},
 		error: function (result) {
-			console.log('Something gona wrong..');	
+			console.log('Something gona wrong.. with filter');	
 		}
 	});
 }

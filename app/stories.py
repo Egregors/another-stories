@@ -185,10 +185,12 @@ def logout():
     session.pop('user_id', None)
     return redirect(url_for('index'))
 
-@app.route('/settings/story_filter/<string:story_filter>')
+@app.route('/settings/story_filter/<string:story_filter>', methods=['POST'])
 def set_story_filter(story_filter):
     if story_filter in ['new', 'like']:
         session['story_filter'] = story_filter
+        flash(u'Вот и самые новые истории') if story_filter == 'new' \
+            else flash(u'Это самые лучшие истории')
         return jsonify({'result': 'OK'})
     return jsonify({'result': 'FAILED'})
 
