@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="">
+
+    {% load staticfiles %}
+
+    <link rel=stylesheet type=text/css href="{% static 'css/style.css' %}">
+    <link rel=stylesheet type=text/css href="{% static 'css/skel-noscript.css' %}">
+    <link rel=stylesheet type=text/css href="{% static 'css/style-n1.css' %}">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+
+    <link rel="shortcut icon" href="/bootstrap/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/bootstrap/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/bootstrap/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/bootstrap/img/apple-touch-icon-114x114.png">
+
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+
+  </head>
+  <body>
+    <div id="header-wrapper">
+		<!-- Header -->
+		<div id="header">
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li class="opener s1" style="-webkit-user-select: none; cursor: pointer; white-space: nowrap; opacity: 1;">
+						<a href="" class="glyphicon glyphicon-tree-deciduous" id="login-icon"></a>
+						<!--<ul style="-webkit-user-select: none; position: absolute; z-index: 1000; left: 158px; top: 80px; opacity: 1; display: none;" class="dropotron level-0 center" >-->
+							<!--<li style="white-space: nowrap;" class="dropdown"><a class="settings"id="new" href="#" style="display: block;">Показать новые</a></li>-->
+							<!--<li style="white-space: nowrap;" class="dropdown"><a class="settings" id="like" href="#" style="display: block;">Показать лучшие</a></li>-->
+						<!--</ul>-->
+					</li>
+					<!-- {% block logout %}{% endblock %} -->
+					<li style="white-space: nowrap;" id="logoSt"><a href="{% url 'index' %}">ДРУГИЕ СКАЗКИ</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+    <div class="container">
+		{% block content %}
+
+		{% endblock %}
+	</div>
+	<div id="copyright">
+		<ul class="menu">
+			<li  id="llamaCopyright"><a href="#">&copy;Lama on the Boat</a></li>
+			<!-- <li>2014</li> -->
+			<!-- <li><a href="#">Donate!</span></a></li> -->
+		</ul>
+	</div>
+
+    {% block js %}
+      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/skel.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/skel-panels.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/init.js' %}"></script>
+      <script type="text/javascript" src="{% static 'js/notificationClose.js' %}"></script>
+{#      <script type="text/javascript" src="{% static 'js/main.js' %}"></script>#}
+    {% endblock %}
+
+    {% block yandex_metrika %}
+
+    {% endblock %}
+  </body>
+</html>
+
+

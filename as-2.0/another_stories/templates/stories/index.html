@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Другие Сказки
+{% endblock %}
+
+{% block content %}
+    {% if stories %}
+        {% for story in stories %}
+            <div class="row str-content" id="main_{{ story.id }}">
+                <div class="12u">
+                    <!-- Content -->
+                    <article id="content">
+                        <header>
+                            <span align="center" id="storyName"><a
+                                    href="{% url 'story' story.id%}">{{ story.title }}</a></span>
+                        </header>
+                        {{ story.text|safe }}
+                        <div align="right" class="icon-container">
+                            <strong class="str-icon" id="likes_for_{{ story.id }}">{{ story.like }}</strong>
+                            <a href="{% url 'like' story.id %}"><button id="{{ story.id }}" class="like-story"><span
+                                    class="glyphicon glyphicon-heart-empty str-icon"></span></button></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <br/>
+    <br/>
+    <div class="pagination">
+        <span class="step-links">
+            {% if stories.has_previous %}
+                <a href="?page={{ stories.previous_page_number }}">Немного назад</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ stories.number }} из {{ stories.paginator.num_pages }}.
+            </span>
+
+            {% if stories.has_next %}
+                <a href="?page={{ stories.next_page_number }}">Скорее дальше</a>
+            {% endif %}
+        </span>
+    </div>
+
+{% endblock %}
+
+
